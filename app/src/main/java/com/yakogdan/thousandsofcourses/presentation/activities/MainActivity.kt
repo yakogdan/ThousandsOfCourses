@@ -5,6 +5,7 @@ import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
@@ -34,20 +35,32 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         (applicationContext as CoursesApp).applicationComponent.inject(this)
         super.onCreate(savedInstanceState)
+
         enableEdgeToEdge()
+
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setSystemPaddings()
+        setColorSystemIcons(isLightIcons = true)
+
+        if (savedInstanceState == null) router.newRootScreen(Login())
+        initBottomNav()
+    }
+
+    private fun setSystemPaddings() {
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
 
-        if (savedInstanceState == null) {
-            router.newRootScreen(Login())
-        }
-
-        initBottomNav()
+    @Suppress("SameParameterValue")
+    private fun setColorSystemIcons(isLightIcons: Boolean) {
+        val windowInsetsController = WindowCompat.getInsetsController(window, window.decorView)
+        windowInsetsController.isAppearanceLightStatusBars = !isLightIcons
+        windowInsetsController.isAppearanceLightNavigationBars = !isLightIcons
     }
 
     private fun initBottomNav() {
