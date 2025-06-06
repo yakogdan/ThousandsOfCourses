@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.yakogdan.thousandsofcourses.R
 import com.yakogdan.thousandsofcourses.databinding.FragmentAccountBinding
+import com.yakogdan.thousandsofcourses.presentation.activities.MainActivity
 
 class AccountFragment : Fragment(R.layout.fragment_account) {
 
@@ -14,6 +15,8 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentAccountBinding.bind(view)
+
+        (activity as MainActivity).setBottomNavVisibility(isVisible = true)
     }
 
     override fun onDestroyView() {

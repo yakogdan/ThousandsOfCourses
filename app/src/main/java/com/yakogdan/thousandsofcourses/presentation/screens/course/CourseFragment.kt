@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.yakogdan.thousandsofcourses.R
 import com.yakogdan.thousandsofcourses.databinding.FragmentCourseBinding
+import com.yakogdan.thousandsofcourses.presentation.activities.MainActivity
 
 class CourseFragment : Fragment(R.layout.fragment_course) {
 
@@ -14,6 +15,8 @@ class CourseFragment : Fragment(R.layout.fragment_course) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentCourseBinding.bind(view)
+
+        (activity as MainActivity).setBottomNavVisibility(isVisible = false)
     }
 
     override fun onDestroyView() {
