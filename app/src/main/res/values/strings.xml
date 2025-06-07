@@ -3,4 +3,6 @@
     <string name="main_screen">Главная</string>
     <string name="favorites_screen">Избранное</string>
     <string name="account_screen">Аккаунт</string>
+    <string name="login_via_vk">Войти через VK</string>
+    <string name="login_via_ok">Войти через OK</string>
 </resources>
