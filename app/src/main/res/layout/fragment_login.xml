@@ -10,12 +10,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp">
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="100dp">
 
         <TextView
             android:id="@+id/tvScreenName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
             android:text="@string/login_screen_name"
             android:textColor="?attr/colorOnBackground"
             android:textSize="28sp"
@@ -27,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28sp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/email"
             android:textColor="?attr/colorOnBackground"
             android:textSize="16sp"
@@ -40,6 +43,7 @@
             android:layout_marginTop="8dp"
             android:autofillHints="emailAddress"
             android:background="@drawable/edit_text_background"
+            android:fontFamily="sans-serif"
             android:hint="@string/example_email"
             android:inputType="textEmailAddress"
             android:paddingHorizontal="16dp"
@@ -55,6 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16sp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/password"
             android:textColor="?attr/colorOnBackground"
             android:textSize="16sp"
@@ -68,6 +73,7 @@
             android:layout_marginTop="8dp"
             android:autofillHints="password"
             android:background="@drawable/edit_text_background"
+            android:fontFamily="sans-serif"
             android:hint="@string/enter_password"
             android:inputType="textPassword"
             android:paddingHorizontal="16dp"
@@ -84,8 +90,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:backgroundTint="?attr/colorPrimary"
+            android:fontFamily="sans-serif-medium"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
             android:text="@string/login_screen_name"
             android:textColor="?attr/colorOnPrimary"
+            android:textSize="14sp"
             app:cornerRadius="30dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etPassword" />
@@ -95,11 +105,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="4dp"
+            android:fontFamily="sans-serif"
             android:text="@string/no_account"
             android:textColor="?attr/colorOnBackground"
             android:textSize="12sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/tvRegistration"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvForgotPassword"
             app:layout_constraintTop_toBottomOf="@id/btnLogin" />
 
         <TextView
@@ -109,10 +122,12 @@
             android:layout_marginTop="16dp"
             android:clickable="true"
             android:focusable="true"
+            android:fontFamily="sans-serif"
             android:text="@string/registration"
             android:textColor="?attr/colorPrimary"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/tvForgotPassword"
             app:layout_constraintStart_toEndOf="@id/tvNoAccount"
             app:layout_constraintTop_toBottomOf="@id/btnLogin" />
 
@@ -122,9 +137,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif"
             android:text="@string/forgot_password"
             android:textColor="?attr/colorPrimary"
             android:textSize="12sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvNoAccount" />

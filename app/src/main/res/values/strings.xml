@@ -8,7 +8,7 @@
     <string name="login_screen_name">Вход</string>
     <string name="email">Email</string>
     <string name="password">Пароль</string>
-    <string name="no_account">Нет аккаунта?</string>
+    <string name="no_account">Нету аккаунта?</string>
     <string name="registration">Регистрация</string>
     <string name="forgot_password">Забыл пароль</string>
     <string name="example_email">example@gmail.com</string>
