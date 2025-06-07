@@ -15,6 +15,7 @@
         <item name="colorOnSurfaceVariant">@color/white</item>
 
         <item name="colorOutline">@color/stroke_grey</item>
+        <item name="android:textColorHint">@color/white50opacity</item>
     </style>
 
     <style name="Theme.ThousandsOfCourses" parent="Base.Theme.ThousandsOfCourses" />

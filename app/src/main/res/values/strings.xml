@@ -5,4 +5,10 @@
     <string name="account_screen">Аккаунт</string>
     <string name="login_via_vk">Войти через VK</string>
     <string name="login_via_ok">Войти через OK</string>
+    <string name="login_screen_name">Вход</string>
+    <string name="email">Email</string>
+    <string name="password">Пароль</string>
+    <string name="no_account">Нет аккаунта?</string>
+    <string name="registration">Регистрация</string>
+    <string name="forgot_password">Забыл пароль</string>
 </resources>
