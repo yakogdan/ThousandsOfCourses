@@ -1,8 +1,10 @@
 package com.yakogdan.thousandsofcourses.presentation.screens.login
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import com.github.terrakok.cicerone.Router
 import com.yakogdan.thousandsofcourses.R
@@ -37,9 +39,28 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         (activity as MainActivity).setBottomNavVisibility(isVisible = false)
 
-        binding.btnLogin.setOnClickListener {
-            router.newRootScreen(Main())
+        binding.apply {
+
+            btnLogin.setOnClickListener {
+                router.newRootScreen(Main())
+            }
+
+            btnVK.setOnClickListener {
+                openWebsite(url = getString(R.string.vk_url))
+            }
+
+            btnOK.setOnClickListener {
+                openWebsite(url = getString(R.string.ok_url))
+            }
         }
+    }
+
+    private fun openWebsite(url: String) {
+        val browserIntent = Intent(
+            Intent.ACTION_VIEW,
+            url.toUri()
+        )
+        startActivity(browserIntent)
     }
 
     override fun onDestroyView() {

@@ -13,4 +13,6 @@
     <string name="forgot_password">Забыл пароль</string>
     <string name="example_email">example@gmail.com</string>
     <string name="enter_password">Введите пароль</string>
+    <string name="vk_url">https://vk.com/</string>
+    <string name="ok_url">https://ok.ru/</string>
 </resources>
