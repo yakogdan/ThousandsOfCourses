@@ -11,4 +11,6 @@
     <string name="no_account">Нет аккаунта?</string>
     <string name="registration">Регистрация</string>
     <string name="forgot_password">Забыл пароль</string>
+    <string name="example_email">example@gmail.com</string>
+    <string name="enter_password">Введите пароль</string>
 </resources>
