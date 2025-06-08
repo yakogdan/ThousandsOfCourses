@@ -5,7 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Course(
+data class CourseDTO(
 
     @SerialName("hasLike")
     val hasLike: Boolean,
