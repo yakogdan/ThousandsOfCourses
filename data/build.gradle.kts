@@ -35,12 +35,16 @@ android {
 
 dependencies {
 
+    implementation(project(":domain"))
+
     // Retrofit + OkHttp
     implementation(libs.retrofit)
-
     implementation(libs.okhttp)
 
     // Serialization
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.retrofit.kotlinx.serialization.converter)
+
+    // Inject
+    implementation(libs.javax.inject)
 }
