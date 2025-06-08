@@ -16,7 +16,7 @@ class CourseFragment : Fragment(R.layout.fragment_course) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentCourseBinding.bind(view)
 
-        (activity as MainActivity).setBottomNavVisibility(isVisible = false)
+        (activity as MainActivity).setBottomNavVisibility(isVisible = true)
     }
 
     override fun onDestroyView() {
