@@ -14,6 +14,7 @@ dagger = "2.55"
 cicerone = "7.1"
 jetbrainsKotlinJvm = "2.1.20"
 javaxInject = "1"
+lifecycleViewmodelAndroid = "2.9.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -29,6 +30,7 @@ dagger-core = { group = "com.google.dagger", name = "dagger", version.ref = "dag
 dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "dagger" }
 cicerone = { module = "com.github.terrakok:cicerone", version.ref = "cicerone" }
 javax-inject = { module = "javax.inject:javax.inject", version.ref = "javaxInject" }
+androidx-lifecycle-viewmodel-android = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-android", version.ref = "lifecycleViewmodelAndroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
