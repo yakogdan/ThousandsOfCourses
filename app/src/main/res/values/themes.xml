@@ -1,6 +1,10 @@
 <resources>
 
-    <style name="Base.Theme.ThousandsOfCourses" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.ThousandsOfCourses" parent="Theme.Material3.DayNight.NoActionBar" />
+
+    <style name="Theme.ThousandsOfCourses" parent="Base.Theme.ThousandsOfCourses">
+
+        <item name="elevationOverlayEnabled">false</item>
 
         <item name="colorPrimary">@color/green</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -15,10 +19,11 @@
         <item name="colorSurfaceVariant">@color/light_grey</item>
         <item name="colorOnSurfaceVariant">@color/white</item>
 
+        <item name="colorSurfaceContainer">@color/dark_grey</item>
+
         <item name="colorOutline">@color/stroke_grey</item>
         <item name="android:textColorHint">@color/white50opacity</item>
-    </style>
 
-    <style name="Theme.ThousandsOfCourses" parent="Base.Theme.ThousandsOfCourses" />
+    </style>
 
 </resources>
