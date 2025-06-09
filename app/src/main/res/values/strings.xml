@@ -18,4 +18,5 @@
     <string name="course_image">Изображение курса</string>
     <string name="is_course_favorite">Является ли курс избранным</string>
     <string name="star">Звезда</string>
+    <string name="more">Подробнее</string>
 </resources>
