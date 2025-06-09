@@ -38,7 +38,7 @@
 
         <EditText
             android:id="@+id/etEmail"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:autofillHints="emailAddress"
@@ -51,6 +51,7 @@
             android:textColor="?attr/colorOnSurfaceVariant"
             android:textColorHint="?attr/android:textColorHint"
             android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvEditTextNameEmail" />
 
@@ -68,7 +69,7 @@
 
         <EditText
             android:id="@+id/etPassword"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:autofillHints="password"
@@ -81,12 +82,13 @@
             android:textColor="?attr/colorOnSurfaceVariant"
             android:textColorHint="?attr/android:textColorHint"
             android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvEditTextNamePassword" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLogin"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:backgroundTint="?attr/colorPrimary"
@@ -98,6 +100,7 @@
             android:textColor="?attr/colorOnPrimary"
             android:textSize="14sp"
             app:cornerRadius="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etPassword" />
 
@@ -149,7 +152,7 @@
 
         <View
             android:id="@+id/viewDivider"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginTop="32dp"
             android:background="?attr/colorOutline"
