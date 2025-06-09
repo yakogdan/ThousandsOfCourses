@@ -162,25 +162,32 @@
 
         <ImageView
             android:id="@+id/btnVK"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/vk_blue_background"
             android:contentDescription="@string/login_via_vk"
-            android:src="@drawable/ic_button_vk"
+            android:paddingVertical="14dp"
+            android:scaleType="center"
+            android:src="@drawable/ic_vk"
             app:layout_constraintEnd_toStartOf="@id/btnOK"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/viewDivider" />
 
         <ImageView
             android:id="@+id/btnOK"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/ok_orange_gradient_background"
             android:contentDescription="@string/login_via_ok"
-            android:src="@drawable/ic_button_ok"
+            android:scaleType="center"
+            android:src="@drawable/ic_ok"
+            app:layout_constraintBottom_toBottomOf="@id/btnVK"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/btnVK"
-            app:layout_constraintTop_toBottomOf="@id/viewDivider" />
+            app:layout_constraintTop_toTopOf="@id/btnVK" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
