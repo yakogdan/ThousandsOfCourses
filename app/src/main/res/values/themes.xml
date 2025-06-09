@@ -10,6 +10,7 @@
 
         <item name="colorSurface">@color/dark_grey</item>
         <item name="colorOnSurface">@color/white</item>
+        <item name="colorOnSurfaceInverse">@color/white70opacity</item>
 
         <item name="colorSurfaceVariant">@color/light_grey</item>
         <item name="colorOnSurfaceVariant">@color/white</item>
