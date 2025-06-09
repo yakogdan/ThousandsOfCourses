@@ -16,6 +16,6 @@ class CourseItemDecoration(
         parent: RecyclerView,
         state: RecyclerView.State,
     ) {
-        outRect.top = paddingBottomDp.convertDpToPixels(context)
+        outRect.bottom = paddingBottomDp.convertDpToPixels(context)
     }
 }
