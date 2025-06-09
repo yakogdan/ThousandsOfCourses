@@ -43,9 +43,14 @@ class MainActivity : AppCompatActivity() {
 
         setSystemPaddings()
         setColorSystemIcons(isLightIcons = true)
+        setNavActiveIndicatorColor()
 
         if (savedInstanceState == null) router.newRootScreen(Login())
         initBottomNav()
+    }
+
+    private fun setNavActiveIndicatorColor() {
+        binding.bottomNav.itemActiveIndicatorColor = getColorStateList(R.color.light_grey)
     }
 
     private fun setSystemPaddings() {
