@@ -19,4 +19,7 @@
     <string name="is_course_favorite">Является ли курс избранным</string>
     <string name="star">Звезда</string>
     <string name="more">Подробнее</string>
+    <string name="search_courses">Search courses…</string>
+    <string name="course_filter">Фильтр курсов</string>
+    <string name="by_date_added">По дате добавления</string>
 </resources>

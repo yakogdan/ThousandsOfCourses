@@ -1,24 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="16dp"
     tools:context=".presentation.screens.main.MainFragment">
 
-    <TextView
-        android:id="@+id/tvTest"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/etSearch"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="test"
-        android:textColor="?attr/colorOnBackground"
-        android:textSize="20sp" />
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:autofillHints="emailAddress"
+        android:background="@drawable/surface_et_background"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="20dp"
+        android:fontFamily="sans-serif"
+        android:hint="@string/search_courses"
+        android:inputType="textEmailAddress"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="20dp"
+        android:textColor="?attr/colorOnSurface"
+        android:textColorHint="?attr/android:textColorHint"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-    <Button
-        android:id="@+id/btnMain"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="main go to course" />
+        android:layout_height="0dp"
+        android:background="@drawable/round_surface_background"
+        android:contentDescription="@string/course_filter"
+        android:paddingHorizontal="23dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_filter"
+        app:layout_constraintBottom_toBottomOf="@id/etSearch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/etSearch"
+        app:layout_constraintTop_toTopOf="@id/etSearch" />
 
-</FrameLayout>
+    <LinearLayout
+        android:id="@+id/btnDateSorting"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center_vertical|end"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etSearch"
+        tools:ignore="UseCompoundDrawables">
+
+        <TextView
+            android:id="@+id/tvByDateAdded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/by_date_added"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/ivSorting"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="2dp"
+            android:contentDescription="@string/more"
+            android:padding="4dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_sorting" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
