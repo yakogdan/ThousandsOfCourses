@@ -31,7 +31,7 @@
             android:contentDescription="@string/is_course_favorite"
             android:padding="7.5dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_favorite"
+            android:src="@drawable/ic_not_favorite"
             app:layout_constraintEnd_toEndOf="@id/ivCourseImage"
             app:layout_constraintTop_toTopOf="@id/ivCourseImage" />
 

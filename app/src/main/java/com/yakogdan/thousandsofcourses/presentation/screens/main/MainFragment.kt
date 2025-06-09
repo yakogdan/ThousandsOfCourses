@@ -14,6 +14,9 @@ import com.yakogdan.thousandsofcourses.app.CoursesApp
 import com.yakogdan.thousandsofcourses.databinding.FragmentMainBinding
 import com.yakogdan.thousandsofcourses.di.components.DaggerMainComponent
 import com.yakogdan.thousandsofcourses.presentation.activities.MainActivity
+import com.yakogdan.thousandsofcourses.presentation.adapters.courses.CoursesAdapter
+import com.yakogdan.thousandsofcourses.presentation.adapters.courses.course.CoursesAdapterDelegate
+import com.yakogdan.thousandsofcourses.presentation.adapters.courses.course.toDelegates
 import com.yakogdan.thousandsofcourses.presentation.navigation.Screens.Course
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -33,6 +36,12 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
     }
 
+    private val coursesAdapter: CoursesAdapter by lazy(LazyThreadSafetyMode.NONE) {
+        CoursesAdapter().apply {
+            addDelegates()
+        }
+    }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
@@ -49,21 +58,32 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         (activity as MainActivity).setBottomNavVisibility(isVisible = true)
 
-        binding.btnMain.setOnClickListener {
-            router.navigateTo(Course())
-        }
-
-        viewModel.loadCursesFromApi()
+        initAdapter()
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.coursesState.collect {
-                        binding.tvTest.text = it.lastOrNull()?.title ?: "load"
+                        coursesAdapter.submitList(it.toDelegates())
                     }
                 }
             }
         }
+    }
+
+    private fun initAdapter() {
+        binding.rvCurses.adapter = coursesAdapter
+        viewModel.loadCursesFromApi()
+    }
+
+    private fun CoursesAdapter.addDelegates() {
+        addDelegate(
+            CoursesAdapterDelegate(
+                onCourseClick = { course ->
+                    router.navigateTo(Course())
+                }
+            )
+        )
     }
 
     override fun onDestroyView() {
