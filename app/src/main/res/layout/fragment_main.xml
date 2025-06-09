@@ -19,6 +19,7 @@
         android:drawablePadding="20dp"
         android:fontFamily="sans-serif"
         android:hint="@string/search_courses"
+        android:enabled="false"
         android:inputType="textEmailAddress"
         android:paddingHorizontal="16dp"
         android:paddingVertical="20dp"
