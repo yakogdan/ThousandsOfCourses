@@ -61,6 +61,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         initCoursesAdapter()
 
+        binding.btnDateSorting.setOnClickListener {
+            viewModel.sortCoursesInDescendingOrder()
+        }
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {

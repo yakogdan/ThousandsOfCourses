@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.yakogdan.thousandsofcourses.R
+import com.yakogdan.thousandsofcourses.data.tools.toStringDate
 import com.yakogdan.thousandsofcourses.databinding.CourseCardBinding
 import com.yakogdan.thousandsofcourses.domain.models.CourseModel
 import com.yakogdan.thousandsofcourses.presentation.adapters.delegate.AdapterDelegate
@@ -55,7 +56,7 @@ class CoursesAdapterDelegate(
                 ivCourseImage.setImageResource(R.drawable.course_image) // В данных из JSON нет ссылки на изображение
                 btnIsFavorite.setImageResource(favoriteImageRes)
                 tvRating.text = course.rate
-                tvDate.text = course.startDate
+                tvDate.text = course.startDate.toStringDate()
                 tvTitle.text = course.title
                 tvDescription.text = course.text
                 tvPrice.text = price

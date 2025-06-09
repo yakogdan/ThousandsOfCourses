@@ -2,6 +2,7 @@ package com.yakogdan.thousandsofcourses.presentation.screens.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.yakogdan.thousandsofcourses.domain.models.CourseModel
 import com.yakogdan.thousandsofcourses.domain.usecases.GetCoursesFromApiUseCase
 import com.yakogdan.thousandsofcourses.presentation.adapters.courses.course.toDelegates
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -15,6 +16,7 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val getCoursesFromApiUseCase: GetCoursesFromApiUseCase,
 ) : ViewModel() {
+
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
         _mainScreenState.value = MainScreenState.Error(throwable = throwable)
     }
@@ -35,6 +37,19 @@ class MainViewModel @Inject constructor(
             } else {
                 _mainScreenState.value = MainScreenState.Success(courses = courses.toDelegates())
             }
+        }
+    }
+
+    fun sortCoursesInDescendingOrder() {
+        if (mainScreenState.value is MainScreenState.Success) {
+            val courses = (mainScreenState.value as MainScreenState.Success).courses
+            _mainScreenState.value =
+                MainScreenState.Success(
+                    courses = courses
+                        .sortedByDescending {
+                            (it.content() as CourseModel).publishDate
+                        }
+                )
         }
     }
 }
