@@ -17,6 +17,7 @@ import com.yakogdan.thousandsofcourses.presentation.activities.MainActivity
 import com.yakogdan.thousandsofcourses.presentation.adapters.courses.CoursesAdapter
 import com.yakogdan.thousandsofcourses.presentation.adapters.courses.course.CoursesAdapterDelegate
 import com.yakogdan.thousandsofcourses.presentation.adapters.courses.course.toDelegates
+import com.yakogdan.thousandsofcourses.presentation.adapters.itemdecoration.CourseItemDecoration
 import com.yakogdan.thousandsofcourses.presentation.navigation.Screens.Course
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -58,7 +59,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         (activity as MainActivity).setBottomNavVisibility(isVisible = true)
 
-        initAdapter()
+        initCoursesAdapter()
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -71,8 +72,16 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         }
     }
 
-    private fun initAdapter() {
-        binding.rvCurses.adapter = coursesAdapter
+    private fun initCoursesAdapter() {
+        binding.apply {
+            rvCurses.adapter = coursesAdapter
+            rvCurses.addItemDecoration(
+                CourseItemDecoration(
+                    paddingBottomDp = 16,
+                    context = requireContext(),
+                )
+            )
+        }
         viewModel.loadCursesFromApi()
     }
 
