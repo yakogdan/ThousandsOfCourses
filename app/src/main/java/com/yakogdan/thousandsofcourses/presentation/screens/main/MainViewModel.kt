@@ -1,10 +1,9 @@
 package com.yakogdan.thousandsofcourses.presentation.screens.main
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.yakogdan.thousandsofcourses.domain.models.CourseModel
 import com.yakogdan.thousandsofcourses.domain.usecases.GetCoursesFromApiUseCase
+import com.yakogdan.thousandsofcourses.presentation.adapters.courses.course.toDelegates
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,16 +16,25 @@ class MainViewModel @Inject constructor(
     private val getCoursesFromApiUseCase: GetCoursesFromApiUseCase,
 ) : ViewModel() {
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-        Log.d("exceptionHandler", throwable.message.toString())
+        _mainScreenState.value = MainScreenState.Error(throwable = throwable)
     }
 
-    private val _coursesState =
-        MutableStateFlow<List<CourseModel>>(emptyList())
-    val coursesState: StateFlow<List<CourseModel>> = _coursesState.asStateFlow()
+    private val _mainScreenState =
+        MutableStateFlow<MainScreenState>(MainScreenState.Initial)
+    val mainScreenState: StateFlow<MainScreenState> = _mainScreenState.asStateFlow()
 
     fun loadCursesFromApi() {
         viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
-            _coursesState.value = getCoursesFromApiUseCase.invoke()
+
+            _mainScreenState.value = MainScreenState.Loading
+
+            val courses = getCoursesFromApiUseCase.invoke()
+
+            if (courses.isEmpty()) {
+                _mainScreenState.value = MainScreenState.Empty
+            } else {
+                _mainScreenState.value = MainScreenState.Success(courses = courses.toDelegates())
+            }
         }
     }
 }

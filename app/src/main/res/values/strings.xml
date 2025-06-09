@@ -23,4 +23,7 @@
     <string name="course_filter">Фильтр курсов</string>
     <string name="by_date_added">По дате добавления</string>
     <string name="sorting">Сортировка</string>
+    <string name="empty">Пусто</string>
+    <string name="course_loading_error">Ошибка загрузки курсов: %1$s</string>
+    <string name="loading_courses">Загрузка курсов…</string>
 </resources>

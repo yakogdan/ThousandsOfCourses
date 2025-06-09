@@ -3,6 +3,7 @@ package com.yakogdan.thousandsofcourses.presentation.screens.main
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
@@ -16,7 +17,6 @@ import com.yakogdan.thousandsofcourses.di.components.DaggerMainComponent
 import com.yakogdan.thousandsofcourses.presentation.activities.MainActivity
 import com.yakogdan.thousandsofcourses.presentation.adapters.courses.CoursesAdapter
 import com.yakogdan.thousandsofcourses.presentation.adapters.courses.course.CoursesAdapterDelegate
-import com.yakogdan.thousandsofcourses.presentation.adapters.courses.course.toDelegates
 import com.yakogdan.thousandsofcourses.presentation.adapters.itemdecoration.CourseItemDecoration
 import com.yakogdan.thousandsofcourses.presentation.navigation.Screens.Course
 import kotlinx.coroutines.launch
@@ -64,10 +64,48 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
-                    viewModel.coursesState.collect {
-                        coursesAdapter.submitList(it.toDelegates())
-                    }
+                    processMainScreenState()
                 }
+            }
+        }
+    }
+
+    private suspend fun processMainScreenState(): Nothing {
+        viewModel.mainScreenState.collect {
+            when (val screenState = it) {
+
+                MainScreenState.Empty -> {
+                    Toast.makeText(
+                        /* context = */ requireContext(),
+                        /* text = */ getString(R.string.empty),
+                        /* duration = */ Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                is MainScreenState.Error -> {
+                    Toast.makeText(
+                        /* context = */ requireContext(),
+                        /* text = */ getString(
+                            R.string.course_loading_error,
+                            screenState.throwable.message
+                        ),
+                        /* duration = */ Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                MainScreenState.Loading -> {
+                    Toast.makeText(
+                        /* context = */ requireContext(),
+                        /* text = */ getString(R.string.loading_courses),
+                        /* duration = */ Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                is MainScreenState.Success -> {
+                    coursesAdapter.submitList(it.courses)
+                }
+
+                MainScreenState.Initial -> {}
             }
         }
     }
