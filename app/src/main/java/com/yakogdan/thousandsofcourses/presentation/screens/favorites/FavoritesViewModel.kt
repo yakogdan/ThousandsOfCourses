@@ -14,31 +14,31 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class FavoriteViewModel @Inject constructor(
+class FavoritesViewModel @Inject constructor(
     private val getFavoriteCoursesUseCase: GetFavoriteCoursesUseCase,
     private val addCourseToFavoriteUseCase: AddCourseToFavoriteUseCase,
 ) : ViewModel() {
 
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-        _favoriteScreenState.value = FavoriteScreenState.Error(throwable = throwable)
+        _favoritesScreenState.value = FavoritesScreenState.Error(throwable = throwable)
     }
 
-    private val _favoriteScreenState =
-        MutableStateFlow<FavoriteScreenState>(FavoriteScreenState.Initial)
-    val favoriteScreenState: StateFlow<FavoriteScreenState> = _favoriteScreenState.asStateFlow()
+    private val _favoritesScreenState =
+        MutableStateFlow<FavoritesScreenState>(FavoritesScreenState.Initial)
+    val favoritesScreenState: StateFlow<FavoritesScreenState> = _favoritesScreenState.asStateFlow()
 
     fun loadFavoriteCurses() {
         viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
 
-            _favoriteScreenState.value = FavoriteScreenState.Loading
+            _favoritesScreenState.value = FavoritesScreenState.Loading
 
             val courses = getFavoriteCoursesUseCase.invoke()
 
             if (courses.isEmpty()) {
-                _favoriteScreenState.value = FavoriteScreenState.Empty
+                _favoritesScreenState.value = FavoritesScreenState.Empty
             } else {
-                _favoriteScreenState.value =
-                    FavoriteScreenState.Success(courses = courses.toDelegates())
+                _favoritesScreenState.value =
+                    FavoritesScreenState.Success(courses = courses.toDelegates())
             }
         }
     }
