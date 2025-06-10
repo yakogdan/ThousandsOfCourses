@@ -2,8 +2,6 @@ package com.yakogdan.thousandsofcourses.presentation.screens.favorites
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.yakogdan.thousandsofcourses.domain.models.CourseModel
-import com.yakogdan.thousandsofcourses.domain.usecases.AddCourseToFavoriteUseCase
 import com.yakogdan.thousandsofcourses.domain.usecases.GetFavoriteCoursesUseCase
 import com.yakogdan.thousandsofcourses.presentation.adapters.courses.course.toDelegates
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -16,7 +14,6 @@ import javax.inject.Inject
 
 class FavoritesViewModel @Inject constructor(
     private val getFavoriteCoursesUseCase: GetFavoriteCoursesUseCase,
-    private val addCourseToFavoriteUseCase: AddCourseToFavoriteUseCase,
 ) : ViewModel() {
 
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
@@ -40,12 +37,6 @@ class FavoritesViewModel @Inject constructor(
                 _favoritesScreenState.value =
                     FavoritesScreenState.Success(courses = courses.toDelegates())
             }
-        }
-    }
-
-    fun addCourseToFavorite(course: CourseModel) {
-        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
-            addCourseToFavoriteUseCase.invoke(course = course)
         }
     }
 }

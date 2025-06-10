@@ -132,7 +132,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             CoursesAdapterDelegate(
                 onCourseClick = { course ->
                     router.navigateTo(Course())
-                }
+                },
+                onCourseLongClick = { course ->
+                    viewModel.addCourseToFavorite(course = course)
+                },
             )
         )
     }

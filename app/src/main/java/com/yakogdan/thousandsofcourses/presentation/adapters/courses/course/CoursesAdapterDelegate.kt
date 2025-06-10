@@ -12,7 +12,9 @@ import com.yakogdan.thousandsofcourses.presentation.adapters.delegate.DelegateIt
 
 class CoursesAdapterDelegate(
     private val onCourseClick: (course: CourseModel) -> Unit,
-) : AdapterDelegate {
+    private val onCourseLongClick: (course: CourseModel) -> Unit = { },
+
+    ) : AdapterDelegate {
 
     override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder =
         StreamViewHolder(
@@ -22,6 +24,7 @@ class CoursesAdapterDelegate(
                 false
             ),
             onCourseClick = onCourseClick,
+            onCourseLongClick = onCourseLongClick,
         )
 
     override fun onBindViewHolder(
@@ -40,6 +43,7 @@ class CoursesAdapterDelegate(
     class StreamViewHolder(
         private val binding: CourseCardBinding,
         private val onCourseClick: (course: CourseModel) -> Unit,
+        private val onCourseLongClick: (course: CourseModel) -> Unit,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(course: CourseModel) {
@@ -50,8 +54,14 @@ class CoursesAdapterDelegate(
             val price = "${course.price} ₽"
 
             binding.apply {
-                root.setOnClickListener {
-                    onCourseClick(course)
+                root.apply {
+                    setOnClickListener {
+                        onCourseClick(course)
+                    }
+                    setOnLongClickListener {
+                        onCourseLongClick(course)
+                        true
+                    }
                 }
                 ivCourseImage.setImageResource(R.drawable.course_image) // В данных из JSON нет ссылки на изображение
                 btnIsFavorite.setImageResource(favoriteImageRes)

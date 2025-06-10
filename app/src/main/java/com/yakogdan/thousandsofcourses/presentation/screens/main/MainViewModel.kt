@@ -3,6 +3,7 @@ package com.yakogdan.thousandsofcourses.presentation.screens.main
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yakogdan.thousandsofcourses.domain.models.CourseModel
+import com.yakogdan.thousandsofcourses.domain.usecases.AddCourseToFavoriteUseCase
 import com.yakogdan.thousandsofcourses.domain.usecases.GetCoursesFromApiUseCase
 import com.yakogdan.thousandsofcourses.presentation.adapters.courses.course.toDelegates
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -15,6 +16,7 @@ import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
     private val getCoursesFromApiUseCase: GetCoursesFromApiUseCase,
+    private val addCourseToFavoriteUseCase: AddCourseToFavoriteUseCase,
 ) : ViewModel() {
 
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
@@ -50,6 +52,12 @@ class MainViewModel @Inject constructor(
                             (it.content() as CourseModel).publishDate
                         }
                 )
+        }
+    }
+
+    fun addCourseToFavorite(course: CourseModel) {
+        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
+            addCourseToFavoriteUseCase.invoke(course = course)
         }
     }
 }
